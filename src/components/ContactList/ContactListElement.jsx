@@ -1,7 +1,7 @@
 import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/operations';
+import { deleteContact } from '../../redux/contacts/operations';
 
 export const ContactListElement = ({ contact }) => {
   const { name, phone, id } = contact;
@@ -24,7 +24,7 @@ export const ContactListElement = ({ contact }) => {
 ContactListElement.propTypes = {
   contact: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
 };
