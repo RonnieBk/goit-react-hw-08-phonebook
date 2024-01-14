@@ -5,7 +5,9 @@ import { Filter } from 'components/Filter/Filter';
 import { useEffect } from 'react';
 import { fetchContacts } from '../redux/contacts/operations';
 import { selectIsLoading, selectError } from '../redux/contacts/selectors';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
+
+import { Box, Flex, Heading, Spinner } from '@chakra-ui/react';
 
 export default function Contacts() {
   const dispatch = useDispatch();
@@ -21,13 +23,29 @@ export default function Contacts() {
       <Helmet>
         <title>Contacts</title>
       </Helmet>
-      <h1>Phonebook</h1>
-      <ContactForm />
 
-      <h2>Contacts</h2>
-      <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
-      <ContactList />
+      <Box p="20px">
+        <Heading>Add New Contact</Heading>
+        <ContactForm />
+      </Box>
+
+      <Box p="20px" w="100%" h="100%" bg="lightgreen">
+        <Heading>Your Contacts</Heading>
+        <Filter />
+        {isLoading && !error && (
+          <Flex alignItems="center">
+            <b>Request in progress... </b>
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="teal.500"
+              size="xl"
+            />
+          </Flex>
+        )}
+        <ContactList />
+      </Box>
     </div>
   );
 }

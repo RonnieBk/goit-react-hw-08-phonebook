@@ -1,10 +1,10 @@
 import { Navigation } from 'components/Navigation/Navigation';
-import css from './AppBar.module.css';
+import { Box } from '@chakra-ui/react';
 
 export const AppBar = () => {
   return (
-    <header className={css.header}>
+    <Box w="100%" borderBottom="2px solid teal" p="10px" mb="20px">
       <Navigation />
-    </header>
+    </Box>
   );
 };

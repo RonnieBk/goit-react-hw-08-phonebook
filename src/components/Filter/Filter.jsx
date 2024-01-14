@@ -1,6 +1,6 @@
 import { setFilter } from '../../redux/contacts/filterSlice';
 import { useDispatch } from 'react-redux';
-import css from './Filter.module.css';
+import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -11,17 +11,19 @@ export const Filter = () => {
   };
 
   return (
-    <div>
-      <label className={css.label} htmlFor="filter">
-        Find contacts by name
-      </label>
-      <input
-        className={css.input}
+    <FormControl>
+      <FormLabel htmlFor="filter">Find by name</FormLabel>
+      <Input
         type="text"
         id="filter"
         name="filter"
         onChange={handleChange}
+        placeholder="Search"
+        _placeholder={{ color: 'teal' }}
+        mb="10px"
+        borderColor="teal"
+        focusBorderColor="teal.400"
       />
-    </div>
+    </FormControl>
   );
 };

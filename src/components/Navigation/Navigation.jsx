@@ -2,13 +2,12 @@ import { NavLink } from 'react-router-dom';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useAuth } from 'hooks/useAuth';
 
-import css from './Navigation.module.css';
 import styled from 'styled-components';
+import { Flex } from '@chakra-ui/react';
 
 const StyledLink = styled(NavLink)`
   color: black;
   text-decoration: none;
-  margin-right: 30px;
   &.active {
     font-weight: bold;
   }
@@ -18,28 +17,22 @@ export const Navigation = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <nav className={css.navigation}>
-      <StyledLink to="/">Home</StyledLink>
+    <Flex justifyContent="space-between" alignItems="center">
+      <Flex gap="20px">
+        <StyledLink to="/">Home</StyledLink>
+        {isLoggedIn && <StyledLink to="/contacts">Contacts</StyledLink>}
+      </Flex>
 
       {isLoggedIn ? (
-        <>
-          <StyledLink to="/contacts" className={css.link}>
-            Contacts
-          </StyledLink>
-          <span>
-            <UserMenu />
-          </span>
-        </>
+        <Flex alignItems="center" gap="10px">
+          <UserMenu />
+        </Flex>
       ) : (
-        <>
-          <StyledLink to="/register" className={css.link}>
-            Register
-          </StyledLink>
-          <StyledLink to="/login" className={css.link}>
-            Login
-          </StyledLink>
-        </>
+        <Flex gap="30">
+          <StyledLink to="/register">Register</StyledLink>
+          <StyledLink to="/login">Login</StyledLink>
+        </Flex>
       )}
-    </nav>
+    </Flex>
   );
 };

@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 import { selectContacts } from '../../redux/contacts/selectors';
-import css from './ContactForm.module.css';
+import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import Notiflix from 'notiflix';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -21,39 +22,39 @@ export const ContactForm = () => {
     );
 
     if (foundContact) {
-      alert(`${newContact.name} is already in contacts.`);
+      Notiflix.Notify.warning(`${newContact.name} is already in contacts.`);
     } else dispatch(addContact(newContact));
 
     form.reset();
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label htmlFor="name" className={css.formLabel}>
-        Name
-      </label>
-      <input
-        type="text"
-        name="name"
-        className={css.formInput}
-        id="name"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-      />
-      <label htmlFor="phone" className={css.formLabel}>
-        Number
-      </label>
-      <input
-        type="tel"
-        name="number"
-        id="phone"
-        className={css.formInput}
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-      />
-      <button type="submit" className={css.submitBtn}>
-        Add contact
-      </button>
-    </form>
+    <FormControl>
+      <form onSubmit={handleSubmit}>
+        <FormLabel htmlFor="name">Name</FormLabel>
+        <Input
+          type="text"
+          name="name"
+          id="name"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          mb="12px"
+          focusBorderColor="lightgreen"
+        />
+        <FormLabel htmlFor="phone">Number</FormLabel>
+        <Input
+          type="tel"
+          name="number"
+          id="phone"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          mb="20px"
+          focusBorderColor="lightgreen"
+        />
+        <Button variant="outline" colorScheme="gray" type="submit">
+          Add contact
+        </Button>
+      </form>
+    </FormControl>
   );
 };

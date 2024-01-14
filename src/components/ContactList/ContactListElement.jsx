@@ -1,10 +1,10 @@
-import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contacts/operations';
+import { Button, ListItem } from '@chakra-ui/react';
 
 export const ContactListElement = ({ contact }) => {
-  const { name, phone, id } = contact;
+  const { name, number, id } = contact;
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -12,12 +12,18 @@ export const ContactListElement = ({ contact }) => {
   };
 
   return (
-    <li id={id} className={css.listItem}>
-      {name}: {phone}{' '}
-      <button type="button" className={css.btnDelete} onClick={handleDelete}>
+    <ListItem id={id}>
+      {name}: {number}{' '}
+      <Button
+        variant="outline"
+        colorScheme="teal"
+        size="xs"
+        type="button"
+        onClick={handleDelete}
+      >
         Delete
-      </button>
-    </li>
+      </Button>
+    </ListItem>
   );
 };
 

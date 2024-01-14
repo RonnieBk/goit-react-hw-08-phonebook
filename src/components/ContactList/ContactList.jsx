@@ -1,16 +1,16 @@
-import css from './ContactList.module.css';
 import { ContactListElement } from './ContactListElement';
 import { useSelector } from 'react-redux';
 import { selectFilteredContacts } from '../../redux/contacts/selectors';
+import { List } from '@chakra-ui/react';
 
 export const ContactList = () => {
   const contactsList = useSelector(selectFilteredContacts);
 
   return (
-    <ul className={css.list}>
+    <List>
       {contactsList.map(contact => (
         <ContactListElement key={contact.id} contact={contact} />
       ))}
-    </ul>
+    </List>
   );
 };
