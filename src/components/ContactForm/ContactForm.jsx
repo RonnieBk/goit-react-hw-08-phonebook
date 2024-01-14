@@ -39,7 +39,7 @@ export const ContactForm = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           mb="12px"
-          focusBorderColor="lightgreen"
+          focusBorderColor="teal.400"
         />
         <FormLabel htmlFor="phone">Number</FormLabel>
         <Input
@@ -49,7 +49,7 @@ export const ContactForm = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           mb="20px"
-          focusBorderColor="lightgreen"
+          focusBorderColor="teal.400"
         />
         <Button variant="outline" colorScheme="gray" type="submit">
           Add contact
